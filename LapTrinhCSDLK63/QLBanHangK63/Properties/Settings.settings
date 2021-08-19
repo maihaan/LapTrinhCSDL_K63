@@ -1,7 +1,9 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="QLBanHangK63.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="myConnection" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Data Source = .\MSSQL; Initial catalog = LTCSDLK63; User id=admin; Password=admin;</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>

@@ -1,0 +1,9 @@
+D:\GitHub\LTCSDL_K63\LapTrinhCSDL_K63\LapTrinhCSDLK63\QLBanHangK63\bin\Debug\QLBanHangK63.exe.config
+D:\GitHub\LTCSDL_K63\LapTrinhCSDL_K63\LapTrinhCSDLK63\QLBanHangK63\bin\Debug\QLBanHangK63.exe
+D:\GitHub\LTCSDL_K63\LapTrinhCSDL_K63\LapTrinhCSDLK63\QLBanHangK63\bin\Debug\QLBanHangK63.pdb
+D:\GitHub\LTCSDL_K63\LapTrinhCSDL_K63\LapTrinhCSDLK63\QLBanHangK63\obj\Debug\QLBanHangK63.csprojAssemblyReference.cache
+D:\GitHub\LTCSDL_K63\LapTrinhCSDL_K63\LapTrinhCSDLK63\QLBanHangK63\obj\Debug\QLBanHangK63.Properties.Resources.resources
+D:\GitHub\LTCSDL_K63\LapTrinhCSDL_K63\LapTrinhCSDLK63\QLBanHangK63\obj\Debug\QLBanHangK63.csproj.GenerateResource.cache
+D:\GitHub\LTCSDL_K63\LapTrinhCSDL_K63\LapTrinhCSDLK63\QLBanHangK63\obj\Debug\QLBanHangK63.csproj.CoreCompileInputs.cache
+D:\GitHub\LTCSDL_K63\LapTrinhCSDL_K63\LapTrinhCSDLK63\QLBanHangK63\obj\Debug\QLBanHangK63.exe
+D:\GitHub\LTCSDL_K63\LapTrinhCSDL_K63\LapTrinhCSDLK63\QLBanHangK63\obj\Debug\QLBanHangK63.pdb
