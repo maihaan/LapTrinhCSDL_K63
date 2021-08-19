@@ -19,7 +19,7 @@ CREATE TABLE [dbo].[tbPhanLoai](
 ) ON [PRIMARY]
 
 GO
-
+-----------------------------------------------------------------------------------------------------------------------------------------
 
 USE [LTCSDLK63]
 GO
@@ -47,7 +47,7 @@ CREATE TABLE [dbo].[tbHang](
 ) ON [PRIMARY]
 
 GO
-
+-----------------------------------------------------------------------------------------------------------------------------------------
 
 CREATE PROCEDURE spThemPhanLoai 
 	-- Add the parameters for the stored procedure here
@@ -75,8 +75,70 @@ BEGIN
 	Set @ketQua = (Select ID from tbPhanLoai Where ma=@ma);
 END
 GO
+-----------------------------------------------------------------------------------------------------------------------------------------
 
-Create PROCEDURE spSuaPhanLoai 
+USE [LTCSDLK63]
+GO
+
+/****** Object:  StoredProcedure [dbo].[spSuaPhanLoaiTheoID]    Script Date: 08/19/2021 16:16:51 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+Create PROCEDURE [dbo].[spSuaPhanLoaiTheoID] 
+	-- Add the parameters for the stored procedure here
+	@id int, 
+	@ten nvarchar(max),
+	@ketQua int out
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Kiem tra xem ma them vao da ton tai hay chua
+	declare @kt int;
+	set @kt = (Select ID from tbPhanLoai Where ID=@id);
+	if(@kt > 0)
+		Begin
+			-- Da ton tai thi cap nhat gia tri
+			Update tbPhanLoai Set Ten=@ten Where ID=@id;
+			Set @ketQua = (Select ID from tbPhanLoai Where id=@id and Ten=@ten);
+		End
+	else
+		Begin
+			-- Chua ton tai
+			Set @ketQua=-2;
+			return;
+		End
+END
+
+GO
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+USE [LTCSDLK63]
+GO
+
+/****** Object:  StoredProcedure [dbo].[spSuaPhanLoaiTheoMa]    Script Date: 08/19/2021 16:17:05 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+Create PROCEDURE [dbo].[spSuaPhanLoaiTheoMa] 
 	-- Add the parameters for the stored procedure here
 	@ma nvarchar(50), 
 	@ten nvarchar(max),
@@ -103,4 +165,201 @@ BEGIN
 			return;
 		End
 END
+
 GO
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+USE [LTCSDLK63]
+GO
+
+/****** Object:  StoredProcedure [dbo].[spXoaPhanLoaiTheoID]    Script Date: 08/19/2021 16:18:14 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+Create PROCEDURE [dbo].[spXoaPhanLoaiTheoID] 
+	-- Add the parameters for the stored procedure here
+	@id int,
+	@ketQua int out
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Kiem tra xem ma them vao da ton tai hay chua
+	declare @kt int;
+	set @kt = (Select ID from tbPhanLoai Where ID=@id);
+	if(@kt > 0)
+		Begin
+			-- Da ton tai thi cap nhat gia tri
+			Delete tbPhanLoai Where ID=@id;
+			Set @ketQua = (Select ID from tbPhanLoai Where ID=@id);
+			if(@ketQua > 0)
+				set @ketQua = -1; -- Xoa loi
+			else
+				set @ketQua = 1; -- Xoa thanh cong
+		End
+	else
+		Begin
+			-- Chua ton tai
+			Set @ketQua=-2;
+			return;
+		End
+END
+
+GO
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+USE [LTCSDLK63]
+GO
+
+/****** Object:  StoredProcedure [dbo].[spXoaPhanLoaiTheoMa]    Script Date: 08/19/2021 16:18:33 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+Create PROCEDURE [dbo].[spXoaPhanLoaiTheoMa] 
+	-- Add the parameters for the stored procedure here
+	@ma nvarchar(50),
+	@ketQua int out
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Kiem tra xem ma them vao da ton tai hay chua
+	declare @kt int;
+	set @kt = (Select ID from tbPhanLoai Where Ma=@ma);
+	if(@kt > 0)
+		Begin
+			-- Da ton tai thi cap nhat gia tri
+			Delete tbPhanLoai Where Ma=@ma;
+			Set @ketQua = (Select ID from tbPhanLoai Where ma=@ma);
+			if(@ketQua > 0)
+				set @ketQua = -1; -- Xoa loi
+			else
+				set @ketQua = 1; -- Xoa thanh cong
+		End
+	else
+		Begin
+			-- Chua ton tai
+			Set @ketQua=-2;
+			return;
+		End
+END
+
+GO
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+USE [LTCSDLK63]
+GO
+
+/****** Object:  StoredProcedure [dbo].[spTimTheoID]    Script Date: 08/19/2021 16:18:54 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[spTimTheoID] 
+	-- Add the parameters for the stored procedure here
+	@id nvarchar(50)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	SELECT * From tbPhanLoai Where ID=@id;
+END
+
+GO
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+USE [LTCSDLK63]
+GO
+
+/****** Object:  StoredProcedure [dbo].[spTimTheoMa]    Script Date: 08/19/2021 16:19:12 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[spTimTheoMa] 
+	-- Add the parameters for the stored procedure here
+	@ma nvarchar(50)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	SELECT * From tbPhanLoai Where Ma=@ma;
+END
+
+GO
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+USE [LTCSDLK63]
+GO
+
+/****** Object:  StoredProcedure [dbo].[spTimTheoTen]    Script Date: 08/19/2021 16:19:23 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[spTimTheoTen]
+	-- Add the parameters for the stored procedure here
+	@ten nvarchar(max)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	SELECT * From tbPhanLoai Where Ten like N'%' + @ten + '%';
+END
+
+GO
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
