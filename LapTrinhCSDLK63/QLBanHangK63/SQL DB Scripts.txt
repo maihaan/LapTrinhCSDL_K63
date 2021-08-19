@@ -75,3 +75,32 @@ BEGIN
 	Set @ketQua = (Select ID from tbPhanLoai Where ma=@ma);
 END
 GO
+
+Create PROCEDURE spSuaPhanLoai 
+	-- Add the parameters for the stored procedure here
+	@ma nvarchar(50), 
+	@ten nvarchar(max),
+	@ketQua int out
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Kiem tra xem ma them vao da ton tai hay chua
+	declare @kt int;
+	set @kt = (Select ID from tbPhanLoai Where Ma=@ma);
+	if(@kt > 0)
+		Begin
+			-- Da ton tai thi cap nhat gia tri
+			Update tbPhanLoai Set Ten=@ten Where Ma=@ma;
+			Set @ketQua = (Select ID from tbPhanLoai Where ma=@ma and Ten=@ten);
+		End
+	else
+		Begin
+			-- Chua ton tai
+			Set @ketQua=-2;
+			return;
+		End
+END
+GO
