@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data;
 using System.Data.SqlClient;
+using QLBanHangK63.Model;
 
 namespace QLBanHangK63.Controller
 {
@@ -12,21 +13,41 @@ namespace QLBanHangK63.Controller
         DataAccess da = new DataAccess();
 
         // Select by ID
-        public DataTable SelectByID(int id)
+        public MPhanLoai SelectByID(int id)
         {
             String tenProcedure = "spTimTheoID";
             List<SqlParameter> dsThamSo = new List<SqlParameter>();
             dsThamSo.Add(new SqlParameter("id", id));
-            return da.Read(tenProcedure, dsThamSo);
+            DataTable tb = da.Read(tenProcedure, dsThamSo);
+            if (tb != null && tb.Rows.Count > 0)
+            {
+                MPhanLoai m = new MPhanLoai();
+                m.ID = int.Parse(tb.Rows[0]["ID"].ToString());
+                m.Ma = tb.Rows[0]["Ma"].ToString();
+                m.Ten = tb.Rows[0]["Ten"].ToString();
+                return m;
+            }
+            else
+                return null;
         }
 
         // Select by Ma
-        public DataTable SelectByMa(String ma)
+        public MPhanLoai SelectByMa(String ma)
         {
             String tenProcedure = "spTimTheoMa";
             List<SqlParameter> dsThamSo = new List<SqlParameter>();
             dsThamSo.Add(new SqlParameter("ma", ma));
-            return da.Read(tenProcedure, dsThamSo);
+            DataTable tb = da.Read(tenProcedure, dsThamSo);
+            if (tb != null && tb.Rows.Count > 0)
+            {
+                MPhanLoai m = new MPhanLoai();
+                m.ID = int.Parse(tb.Rows[0]["ID"].ToString());
+                m.Ma = tb.Rows[0]["Ma"].ToString();
+                m.Ten = tb.Rows[0]["Ten"].ToString();
+                return m;
+            }
+            else
+                return null;
         }
 
         // Select by Ten
@@ -36,6 +57,29 @@ namespace QLBanHangK63.Controller
             List<SqlParameter> dsThamSo = new List<SqlParameter>();
             dsThamSo.Add(new SqlParameter("ten", ten));
             return da.Read(tenProcedure, dsThamSo);
+        }
+
+        public List<MPhanLoai> SelectListByTen(String ten)
+        {
+            String tenProcedure = "spTimTheoTen";
+            List<SqlParameter> dsThamSo = new List<SqlParameter>();
+            dsThamSo.Add(new SqlParameter("ten", ten));
+            DataTable tb = da.Read(tenProcedure, dsThamSo);
+            List<MPhanLoai> ds = new List<MPhanLoai>();
+            if (tb != null && tb.Rows.Count > 0)
+            {
+                foreach (DataRow r in tb.Rows)
+                {
+                    MPhanLoai m = new MPhanLoai();
+                    m.ID = int.Parse(r["ID"].ToString());
+                    m.Ma = r["Ma"].ToString();
+                    m.Ten = r["Ten"].ToString();
+                    ds.Add(m);
+                }
+                return ds;
+            }
+            else
+                return null;
         }
 
         // Insert
@@ -84,7 +128,6 @@ namespace QLBanHangK63.Controller
             int ketQua = 0;
             List<SqlParameter> dsThamSo = new List<SqlParameter>();
             dsThamSo.Add(new SqlParameter("id", id));
-            dsThamSo.Add(new SqlParameter("ten", ten));
             dsThamSo.Add(new SqlParameter("ketQua", ketQua));
             da.Write(tenProcedure, dsThamSo);
             return ketQua;
@@ -97,7 +140,6 @@ namespace QLBanHangK63.Controller
             int ketQua = 0;
             List<SqlParameter> dsThamSo = new List<SqlParameter>();
             dsThamSo.Add(new SqlParameter("ma", ma));
-            dsThamSo.Add(new SqlParameter("ten", ten));
             dsThamSo.Add(new SqlParameter("ketQua", ketQua));
             da.Write(tenProcedure, dsThamSo);
             return ketQua;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QLBanHangK63.Controller;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,6 +15,11 @@ namespace QLBanHangK63
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            
         }
     }
 }

@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="myConnection" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Data Source = .\MSSQL; Initial catalog = LTCSDLK63; User id=admin; Password=admin;</Value>
+      <Value Profile="(Default)">Data Source = .\MSSQL; Initial catalog = LTCSDLK63; User id=admin; Password=@n123456;</Value>
     </Setting>
   </Settings>
 </SettingsFile>

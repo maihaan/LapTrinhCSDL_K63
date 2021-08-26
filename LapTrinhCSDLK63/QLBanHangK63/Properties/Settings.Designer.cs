@@ -25,8 +25,8 @@ namespace QLBanHangK63.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source = .\\MSSQL; Initial catalog = LTCSDLK63; User id=admin; Password=admin" +
-            ";")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source = .\\MSSQL; Initial catalog = LTCSDLK63; User id=admin; Password=@n123" +
+            "456;")]
         public string myConnection {
             get {
                 return ((string)(this["myConnection"]));
