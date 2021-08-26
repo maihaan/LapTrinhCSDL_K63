@@ -360,6 +360,350 @@ END
 GO
 -----------------------------------------------------------------------------------------------------------------------------------------
 
+USE [LTCSDLK63]
+GO
+
+/****** Object:  StoredProcedure [dbo].[spThemHang]    Script Date: 08/26/2021 14:53:06 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+Create PROCEDURE [dbo].[spThemHang] 
+	-- Add the parameters for the stored procedure here
+	@ma nvarchar(50), 
+	@ten nvarchar(max),
+	@moTa nvarchar(max),
+	@maPhanLoai nvarchar(50),
+	@dvt nvarchar(50),
+	@donGia int,
+	@soLuong int,
+	@ketQua int out
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Kiem tra xem ma them vao da ton tai hay chua
+	declare @kt int;
+	set @kt = (Select ID from tbHang Where Ma=@ma);
+	if(@kt > 0)
+	Begin
+		-- Da ton tai thi bao -2 va ket thuc
+		Set @ketQua=-2;
+		return;
+	End
+	
+	-- Neu chua ton tai thi them vao
+	Insert into tbHang(Ma, Ten, MoTa, MaPhanLoai, DVT, DonGia, SoLuong) 
+	values(@ma, @ten, @moTa, @maPhanLoai, @dvt, @donGia, @soLuong);
+	Set @ketQua = (Select ID from tbHang Where ma=@ma);
+END
+
+GO
+
+--------------------------------------------------
+USE [LTCSDLK63]
+GO
+
+/****** Object:  StoredProcedure [dbo].[spThemHang]    Script Date: 08/26/2021 14:53:06 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+Create PROCEDURE [dbo].[spThemHang] 
+	-- Add the parameters for the stored procedure here
+	@ma nvarchar(50), 
+	@ten nvarchar(max),
+	@moTa nvarchar(max),
+	@maPhanLoai nvarchar(50),
+	@dvt nvarchar(50),
+	@donGia int,
+	@soLuong int,
+	@ketQua int out
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Kiem tra xem ma them vao da ton tai hay chua
+	declare @kt int;
+	set @kt = (Select ID from tbHang Where Ma=@ma);
+	if(@kt > 0)
+	Begin
+		-- Da ton tai thi bao -2 va ket thuc
+		Set @ketQua=-2;
+		return;
+	End
+	
+	-- Neu chua ton tai thi them vao
+	Insert into tbHang(Ma, Ten, MoTa, MaPhanLoai, DVT, DonGia, SoLuong) 
+	values(@ma, @ten, @moTa, @maPhanLoai, @dvt, @donGia, @soLuong);
+	Set @ketQua = (Select ID from tbHang Where ma=@ma);
+END
+
+GO
+
+-------------------------------------------------------
+USE [LTCSDLK63]
+GO
+
+/****** Object:  StoredProcedure [dbo].[spSuaHangTheoMa]    Script Date: 08/26/2021 14:53:33 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+Create PROCEDURE [dbo].[spSuaHangTheoMa] 
+	-- Add the parameters for the stored procedure here
+	@ma nvarchar(50), 
+	@ten nvarchar(max),
+	@moTa nvarchar(max),
+	@maPhanLoai nvarchar(50),
+	@dvt nvarchar(50),
+	@donGia int,
+	@soLuong int,
+	@ketQua int out
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Kiem tra xem ma them vao da ton tai hay chua
+	declare @kt int;
+	set @kt = (Select ID from tbHang Where Ma=@ma);
+	if(@kt > 0)
+		Begin
+			-- Da ton tai thi cap nhat gia tri
+			Update tbHang Set Ten=@ten, MoTa = @moTa, DVT = @dvt, DonGia = @donGia, 
+			SoLuong = @soLuong, MaPhanLoai = @maPhanLoai
+			Where Ma=@ma;
+			Set @ketQua = (Select ID from tbHang Where Ma=@ma and Ten=@ten and MoTa = @moTa 
+			And DVT = @dvt And DonGia = @donGia And	SoLuong = @soLuong And MaPhanLoai = @maPhanLoai);
+		End
+	else
+		Begin
+			-- Chua ton tai
+			Set @ketQua=-2;
+			return;
+		End
+END
+
+GO
+
+------------------------------------------------------
+USE [LTCSDLK63]
+GO
+
+/****** Object:  StoredProcedure [dbo].[spTimHangTheoID]    Script Date: 08/26/2021 14:53:50 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+Create PROCEDURE [dbo].[spTimHangTheoID] 
+	-- Add the parameters for the stored procedure here
+	@id int
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	SELECT * From tbHang Where ID=@id;
+END
+
+GO
+
+----------------------------------------------------------
+USE [LTCSDLK63]
+GO
+
+/****** Object:  StoredProcedure [dbo].[spTimHangTheoMa]    Script Date: 08/26/2021 14:54:06 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+Create PROCEDURE [dbo].[spTimHangTheoMa] 
+	-- Add the parameters for the stored procedure here
+	@ma nvarchar(50)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	SELECT * From tbHang Where Ma=@ma;
+END
+
+GO
+
+-----------------------------------------------
+USE [LTCSDLK63]
+GO
+
+/****** Object:  StoredProcedure [dbo].[spTimHangTheoTen]    Script Date: 08/26/2021 14:54:18 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+Create PROCEDURE [dbo].[spTimHangTheoTen]
+	-- Add the parameters for the stored procedure here
+	@ten nvarchar(max)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	SELECT * From tbHang Where Ten like N'%' + @ten + '%';
+END
+
+GO
+
+-----------------------------------------------
+USE [LTCSDLK63]
+GO
+
+/****** Object:  StoredProcedure [dbo].[spXoaHangTheoID]    Script Date: 08/26/2021 14:54:34 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+Create PROCEDURE [dbo].[spXoaHangTheoID] 
+	-- Add the parameters for the stored procedure here
+	@id int,
+	@ketQua int out
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Kiem tra xem ma them vao da ton tai hay chua
+	declare @kt int;
+	set @kt = (Select ID from tbHang Where ID=@id);
+	if(@kt > 0)
+		Begin
+			-- Da ton tai thi cap nhat gia tri
+			Delete tbHang Where ID=@id;
+			Set @ketQua = (Select ID from tbHang Where ID=@id);
+			if(@ketQua > 0)
+				set @ketQua = -1; -- Xoa loi
+			else
+				set @ketQua = 1; -- Xoa thanh cong
+		End
+	else
+		Begin
+			-- Chua ton tai
+			Set @ketQua=-2;
+			return;
+		End
+END
+
+GO
+
+----------------------------------------------------
+USE [LTCSDLK63]
+GO
+
+/****** Object:  StoredProcedure [dbo].[spXoaHangTheoMa]    Script Date: 08/26/2021 14:54:44 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+Create PROCEDURE [dbo].[spXoaHangTheoMa] 
+	-- Add the parameters for the stored procedure here
+	@ma nvarchar(50),
+	@ketQua int out
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Kiem tra xem ma them vao da ton tai hay chua
+	declare @kt int;
+	set @kt = (Select ID from tbHang Where Ma=@ma);
+	if(@kt > 0)
+		Begin
+			-- Da ton tai thi cap nhat gia tri
+			Delete tbHang Where Ma=@ma;
+			Set @ketQua = (Select ID from tbHang Where Ma=@ma);
+			if(@ketQua > 0)
+				set @ketQua = -1; -- Xoa loi
+			else
+				set @ketQua = 1; -- Xoa thanh cong
+		End
+	else
+		Begin
+			-- Chua ton tai
+			Set @ketQua=-2;
+			return;
+		End
+END
+
+GO
+
 
 
 
