@@ -133,13 +133,16 @@ namespace QLBanHangK63.Controller
             List<SqlParameter> dsThamSo = new List<SqlParameter>();
             dsThamSo.Add(new SqlParameter("ma", ma));
             dsThamSo.Add(new SqlParameter("ten", ten));
-            dsThamSo.Add(new SqlParameter("ketQua", ketQua));
             dsThamSo.Add(new SqlParameter("moTa", moTa));
             dsThamSo.Add(new SqlParameter("dvt", dvt));
             dsThamSo.Add(new SqlParameter("maPhanLoai", maPhanLoai));
             dsThamSo.Add(new SqlParameter("donGia", donGia));
             dsThamSo.Add(new SqlParameter("soLuong", soLuong));
+            SqlParameter pkq = new SqlParameter("ketQua", ketQua);
+            pkq.Direction = ParameterDirection.Output;
+            dsThamSo.Add(pkq);
             da.Write(tenProcedure, dsThamSo);
+            ketQua = int.Parse(pkq.Value.ToString());
             return ketQua;
         }
 
@@ -151,13 +154,16 @@ namespace QLBanHangK63.Controller
             List<SqlParameter> dsThamSo = new List<SqlParameter>();
             dsThamSo.Add(new SqlParameter("id", id));
             dsThamSo.Add(new SqlParameter("ten", ten));
-            dsThamSo.Add(new SqlParameter("ketQua", ketQua));
             dsThamSo.Add(new SqlParameter("moTa", moTa));
             dsThamSo.Add(new SqlParameter("dvt", dvt));
             dsThamSo.Add(new SqlParameter("maPhanLoai", maPhanLoai));
             dsThamSo.Add(new SqlParameter("donGia", donGia));
             dsThamSo.Add(new SqlParameter("soLuong", soLuong));
+            SqlParameter pkq = new SqlParameter("ketQua", ketQua);
+            pkq.Direction = ParameterDirection.Output;
+            dsThamSo.Add(pkq);
             da.Write(tenProcedure, dsThamSo);
+            ketQua = int.Parse(pkq.Value.ToString());
             return ketQua;
         }
 
@@ -169,37 +175,46 @@ namespace QLBanHangK63.Controller
             List<SqlParameter> dsThamSo = new List<SqlParameter>();
             dsThamSo.Add(new SqlParameter("ma", ma));
             dsThamSo.Add(new SqlParameter("ten", ten));
-            dsThamSo.Add(new SqlParameter("ketQua", ketQua));
             dsThamSo.Add(new SqlParameter("moTa", moTa));
             dsThamSo.Add(new SqlParameter("dvt", dvt));
             dsThamSo.Add(new SqlParameter("maPhanLoai", maPhanLoai));
             dsThamSo.Add(new SqlParameter("donGia", donGia));
             dsThamSo.Add(new SqlParameter("soLuong", soLuong));
+            SqlParameter pkq = new SqlParameter("ketQua", ketQua);
+            pkq.Direction = ParameterDirection.Output;
+            dsThamSo.Add(pkq);
             da.Write(tenProcedure, dsThamSo);
+            ketQua = int.Parse(pkq.Value.ToString());
             return ketQua;
         }
 
         // Delete by ID
-        public int DeleteByID(int id, String ten)
+        public int DeleteByID(int id)
         {
             String tenProcedure = "spXoaHangTheoID";
             int ketQua = 0;
             List<SqlParameter> dsThamSo = new List<SqlParameter>();
             dsThamSo.Add(new SqlParameter("id", id));
-            dsThamSo.Add(new SqlParameter("ketQua", ketQua));
+            SqlParameter pkq = new SqlParameter("ketQua", ketQua);
+            pkq.Direction = ParameterDirection.Output;
+            dsThamSo.Add(pkq);
             da.Write(tenProcedure, dsThamSo);
+            ketQua = int.Parse(pkq.Value.ToString());
             return ketQua;
         }
 
         // Delete by Ma
-        public int DeleteByMa(String ma, String ten)
+        public int DeleteByMa(String ma)
         {
             String tenProcedure = "spXoaHangTheoMa";
             int ketQua = 0;
             List<SqlParameter> dsThamSo = new List<SqlParameter>();
             dsThamSo.Add(new SqlParameter("ma", ma));
-            dsThamSo.Add(new SqlParameter("ketQua", ketQua));
+            SqlParameter pkq = new SqlParameter("ketQua", ketQua);
+            pkq.Direction = ParameterDirection.Output;
+            dsThamSo.Add(pkq);
             da.Write(tenProcedure, dsThamSo);
+            ketQua = int.Parse(pkq.Value.ToString());
             return ketQua;
         }
     }

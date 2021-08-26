@@ -8,3 +8,4 @@ D:\GitHub\LTCSDL_K63\LapTrinhCSDL_K63\LapTrinhCSDLK63\QLBanHangK63\obj\Debug\QLB
 D:\GitHub\LTCSDL_K63\LapTrinhCSDL_K63\LapTrinhCSDLK63\QLBanHangK63\obj\Debug\QLBanHangK63.exe
 D:\GitHub\LTCSDL_K63\LapTrinhCSDL_K63\LapTrinhCSDLK63\QLBanHangK63\obj\Debug\QLBanHangK63.pdb
 D:\GitHub\LTCSDL_K63\LapTrinhCSDL_K63\LapTrinhCSDLK63\QLBanHangK63\obj\Debug\QLBanHangK63.Form1.resources
+D:\GitHub\LTCSDL_K63\LapTrinhCSDL_K63\LapTrinhCSDLK63\QLBanHangK63\obj\Debug\QLBanHangK63.GUI.GPhanLoai.resources

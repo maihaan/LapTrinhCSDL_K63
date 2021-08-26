@@ -53,12 +53,21 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\GPhanLoai.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\GPhanLoai.Designer.cs">
+      <DependentUpon>GPhanLoai.cs</DependentUpon>
+    </Compile>
     <Compile Include="Model\MHang.cs" />
     <Compile Include="Model\MPhanLoai.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\GPhanLoai.resx">
+      <DependentUpon>GPhanLoai.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -83,8 +92,6 @@
   <ItemGroup>
     <Content Include="SQL DB Scripts.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="GUI\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
